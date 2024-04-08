@@ -1,0 +1,12 @@
+<!-- book_detail.html -->
+
+<h1>{{ book.title }}</h1>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p><strong>Category:</strong> {{ book.category }}</p>
+<p><strong>Year:</strong> {{ book.year }}</p>
+<p><strong>Price:</strong> {{ book.price }}</p>
+{% if book.cover %}
+<img src="{{ book.cover.url }}" alt="{{ book.title }} Cover">
+{% else %}
+<p>No Cover Available</p>
+{% endif %}
