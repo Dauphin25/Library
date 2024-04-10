@@ -1,4 +1,4 @@
-from django.db import models
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -12,6 +12,11 @@ class Book(models.Model):
     cover = models.ImageField(upload_to='covers/', blank=True, verbose_name=_("book cover"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("created at"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("updated at"))
+
+    class Meta:
+        ordering = ['title']
+        verbose_name = _("book")
+        verbose_name_plural = _("books")
 
     def __str__(self):
         return self.title

@@ -1,0 +1,87 @@
+<!-- book_list.html -->
+
+    <style>
+        .book-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .book-info {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .book-image {
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .pagination .step-links {
+        display: flex;
+        gap: 10px;
+    }
+    .pagination .step-links a {
+        background-color: #f8f9fa;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        border-radius: 5px;
+    }
+    .pagination .step-links a:hover {
+        background-color: #e9ecef;
+    }
+    .pagination .step-links .current {
+        padding: 10px 15px;
+        color: #495057;
+    }
+    </style>
+
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>Book List</h1>
+    {% for book in books %}
+    <a href="{% url 'book_detail' book.id %}">View Details</a>
+    <div class="book-container">
+        <div class="book-info" >
+            <h2>{{ book.title }}</h2>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Category:</strong> {{ book.category }}</p>
+            <p><strong>Year:</strong> {{ book.year }}</p>
+            <p><strong>Price:</strong> {{ book.price }}</p>
+        </div>
+        <div>
+            {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }} Cover" class="book-image">
+            {% else %}
+            <p>No Cover Available</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if books.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ books.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ books.number }} of {{ books.paginator.num_pages }}.
+            </span>
+
+            {% if books.has_next %}
+                <a href="?page={{ books.next_page_number }}">next</a>
+                <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
+
+
+

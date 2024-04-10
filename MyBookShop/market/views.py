@@ -1,13 +1,21 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import Book
 from django.views.generic import DetailView
 
 
 # Create your views here.
 def all_books(request):
-    books = Book.objects.all()
+    books_list = Book.objects.all()
+    paginator = Paginator(books_list, 3)  # Show 3 books per page.
+
+    page_number = request.GET.get('page')
+    books = paginator.get_page(page_number)
     return render(request, 'book.html', {'books': books})
+
+
+def home_page(request):
+    return render(request, 'main.html')
 
 
 class BookDetailView(DetailView):

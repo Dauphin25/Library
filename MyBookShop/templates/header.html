@@ -1,0 +1,59 @@
+
+    <style>
+        header {
+            background-color: #e01f1f;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+    </style>
+
+{% block content %}
+ <header>
+        <div class="container">
+            <h1 class="logo">My Library</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href= "{% url 'all_books' %}">Books</a></li>
+                    <li><a href="/">Authors</a></li>
+                    <li><a href="/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+{% endblock %}
+
+
