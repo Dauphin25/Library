@@ -7,6 +7,19 @@ This Django project, named "MyBookShop", serves as a virtual library for managin
 
 The project consists of the following components:
 
+
+### Author Management
+
+- Add, update, and delete authors.
+- View detailed information about each author, including:
+  - Name
+  - Birth date
+  - Birth place
+  - Death date (if applicable)
+  - Death place (if applicable)
+- List all authors with their details.
+
+
 1. **Models:** Defined in `market/models.py`, the `Book` model includes fields such as title, author, category, year, price, cover, created_at, and updated_at.
 
 2. **Views:**
