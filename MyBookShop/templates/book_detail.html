@@ -2,7 +2,7 @@
 
 <h1>{{ book.title }}</h1>
 <p><strong>Author:</strong> {{ book.author }}</p>
-<p><strong>Category:</strong> {{ book.category }}</p>
+<p><strong>Categories:</strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 <p><strong>Year:</strong> {{ book.year }}</p>
 <p><strong>Price:</strong> {{ book.price }}</p>
 {% if book.cover %}

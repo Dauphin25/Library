@@ -48,7 +48,7 @@
         <div class="book-info" >
             <a href="{% url 'book_detail' book.id %}"><h2>{{ book.title }}</h2></a>
             <a href="{% url 'author_detail' book.author.id %}"><p><strong>Author:</strong> {{ book.author }}</p></a>
-            <p><strong>Category:</strong> {{ book.category }}</p>
+            <p><strong>Categories:</strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             <p><strong>Year:</strong> {{ book.year }}</p>
             <p><strong>Price:</strong> {{ book.price }}</p>
         </div>
