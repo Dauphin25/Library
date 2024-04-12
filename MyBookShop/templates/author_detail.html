@@ -1,0 +1,17 @@
+
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>{{ author.name }}</h1>
+    <img src="{{ author.portrait.url }}" alt="{{ author.name }} Photo">
+    <p><strong>Birth Date:</strong> {{ author.birth_date }}</p>
+    <p><strong>Birth Place:</strong> {{ author.birth_place }}</p>
+    {% if author.death_date %}
+    <p><strong>Death Date:</strong> {{ author.death_date }}</p>
+    {% endif %}
+    {% if author.death_place %}
+    <p><strong>Death Place:</strong> {{ author.death_place }}</p>
+    {% endif %}
+    <p><strong>Created At:</strong> {{ author.created_at }}</p>
+    <p><strong>Updated At:</strong> {{ author.updated_at }}</p>
+{% endblock %}
