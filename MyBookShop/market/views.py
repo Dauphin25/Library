@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from .models import Book
+from .models import Book, Author
 from django.views.generic import DetailView
 
 
@@ -12,6 +12,11 @@ def all_books(request):
     page_number = request.GET.get('page')
     books = paginator.get_page(page_number)
     return render(request, 'book.html', {'books': books})
+
+
+def all_authors(request):
+    authors = Author.objects.all()
+    return render(request, 'author.html', {'authors': authors})
 
 
 def home_page(request):
@@ -31,4 +36,18 @@ class BookDetailView(DetailView):
     extra_context['header'] = 'Book Detail'
     extra_context['description'] = 'This is the detail of the book'
     extra_context['keywords'] = 'book, detail, book detail'
-    extra_context['author'] = 'BookShop'
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+    template_name = 'author_detail.html'
+    context_object_name = 'author'
+    pk_url_kwarg = 'author_id'
+    query_pk_and_slug = True
+    slug_field = 'name'
+    slug_url_kwarg = 'author_name'
+    extra_context = {}
+    extra_context['title'] = 'Author Detail'
+    extra_context['header'] = 'Author Detail'
+    extra_context['description'] = 'This is the detail of the author'
+    extra_context['keywords'] = 'author, detail, author detail'
