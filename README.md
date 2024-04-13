@@ -19,6 +19,12 @@ The project consists of the following components:
   - Death place (if applicable)
 - List all authors with their details.
 
+### Models
+
+In our `Book` model, we have a `category` field which is a `ManyToManyField`. This means a book can belong to multiple categories and a category can have multiple books. Here's how it's defined:
+
+
+
 
 1. **Models:** Defined in `market/models.py`, the `Book` model includes fields such as title, author, category, year, price, cover, created_at, and updated_at.
 
