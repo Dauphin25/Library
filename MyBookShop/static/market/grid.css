@@ -1,0 +1,71 @@
+/* Set up a grid layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr )); /* Responsive grid with minimum width of 25% */
+    grid-gap: 3%; /* Gap between grid items */
+    margin: 5% 3%; /* Add margin to top, left, right, and bottom */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style for each grid item */
+.grid-item {
+    position: relative; /* Position relative for absolute positioning of details */
+    width: 100%; /* Make each item span the full width */
+    padding-bottom: 150%; /* Aspect ratio for the div */
+    background-size: cover; /* Cover background image */
+    background-position: center; /* Center the background image */
+    cursor: pointer; /* Show pointer cursor on hover */
+    overflow: hidden; /* Hide overflow content */
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Enlarge the grid item on hover */
+.grid-item:hover {
+    transform: scale(1.1);
+}
+
+/* Style for details overlay */
+.details {
+    position: absolute; /* Position details absolutely within grid item */
+    top: 0; /* Align details to top */
+    left: 0; /* Align details to left */
+    width: 100%; /* Make details span the full width */
+    height: 100%; /* Make details span the full height */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #fff; /* Text color */
+    opacity: 0; /* Hide details by default */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack details vertically */
+    justify-content: center; /* Center details vertically */
+    align-items: center; /* Center details horizontally */
+    padding: 20px; /* Padding for details content */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* Show details on hover */
+.grid-item:hover .details {
+    opacity: 1;
+}
+
+/* Reset margin for heading and paragraph elements */
+.details h3, .details p {
+    margin: 0;
+}
+
+/* Add margin to paragraphs */
+.details p {
+    margin-top: 10px;
+}
+
+/* Ensure images within details don't exceed their container */
+.details img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}

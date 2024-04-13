@@ -1,24 +1,26 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Author List</h1>
-    {% for author in authors %}
-    <div class="author-container">
-        <div class="author-info" >
-            <h2>{{ author.name }}</h2>
-            <p><strong>Birth Date:</strong> {{ author.birth_date }}</p>
-            <p><strong>Birth Place:</strong> {{ author.birth_place }}</p>
-            <p><strong>Death Date:</strong> {{ author.death_date }}</p>
-            <p><strong>Death Place:</strong> {{ author.death_place }}</p>
-            <p><strong>Created At:</strong> {{ author.created_at }}</p>
-            <p><strong>Updated At:</strong> {{ author.updated_at }}</p>
-        </div>
-        <div>
-            <img src="{{ author.portrait.url }}" alt="{{ author.name }} Photo" class="author-image">
-        </div>
-    </div>
-    <hr>
-    {% empty %}
-    <p>No authors available</p>
-    {% endfor %}
+    <!-- Your CSS styles here -->
+<head>
+    <link href="{% static 'market/grid.css' %}" rel="stylesheet">
+</head>
+
+    <section id="featured-authors" class="grid-container">
+        <!-- Display the famous authors -->
+        {% for author in authors %}
+        <a href="{% url 'author_detail' author_id=author.id %}">
+            <div class="grid-item" style="background-image: url('{{ author.portrait.url }}')">
+                <div class="details">
+                    <h3>{{ author.name }}</h3>
+                    <p>Birth Date: {{ author.birth_date }}</p>
+                    <p>Birth Place: {{ author.birth_place }}</p>
+                    <!-- Add more author details here if needed -->
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </section>
+
 {% endblock %}

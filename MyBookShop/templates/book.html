@@ -1,66 +1,28 @@
-<!-- book_list.html -->
-
-    <style>
-        .book-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .book-info {
-            flex: 1;
-            padding-right: 20px;
-        }
-        .book-image {
-            max-width: 150px;
-            max-height: 150px;
-        }
-
-        .pagination {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-    }
-    .pagination .step-links {
-        display: flex;
-        gap: 10px;
-    }
-    .pagination .step-links a {
-        background-color: #f8f9fa;
-        padding: 10px 15px;
-        text-decoration: none;
-        color: #333;
-        border-radius: 5px;
-    }
-    .pagination .step-links a:hover {
-        background-color: #e9ecef;
-    }
-    .pagination .step-links .current {
-        padding: 10px 15px;
-        color: #495057;
-    }
-    </style>
-
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
-    {% for book in books %}
-    <div class="book-container">
-        <div class="book-info" >
-            <a href="{% url 'book_detail' book.id %}"><h2>{{ book.title }}</h2></a>
-            <a href="{% url 'author_detail' book.author.id %}"><p><strong>Author:</strong> {{ book.author }}</p></a>
-            <p><strong>Categories:</strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-            <p><strong>Year:</strong> {{ book.year }}</p>
-            <p><strong>Price:</strong> {{ book.price }}</p>
-        </div>
-        <div>
-            {% if book.cover %}
-            <img src="{{ book.cover.url }}" alt="{{ book.title }} Cover" class="book-image">
-            {% else %}
-            <p>No Cover Available</p>
-            {% endif %}
-        </div>
-    </div>
-    {% endfor %}
+    <!-- Your CSS styles here -->
+<head>
+    <link href="{% static 'market/grid.css' %}" rel="stylesheet">
+    <link href="{% static 'market/paginator.css' %}" rel="stylesheet">
+</head>
+    <section id="featured-books" class="grid-container">
+        <!-- Display the famous books -->
+        {% for book in books %}
+        <a href="{% url 'book_detail' book_id=book.id %}">
+            <div class="grid-item" style="background-image: url('{{ book.cover.url }}')">
+                <div class="details">
+                    <h3>{{ book.title }}</h3>
+                    <p>Author: {{ book.author.name }}</p>
+                    <p>Price: {{ book.price }}</p>
+                    <!-- Add more book details here if needed -->
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </section>
+
 
     <div class="pagination">
         <span class="step-links">

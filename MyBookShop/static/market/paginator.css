@@ -1,0 +1,33 @@
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination .step-links {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination .step-links a {
+    color: #e01f1f;
+    text-decoration: none;
+    background-color: #f1f8ff;
+    border: 1px solid #e1e4e8;
+    padding: 5px 10px;
+    margin-right: 4px;
+    border-radius: 3px;
+}
+
+.pagination .step-links a:hover {
+    background-color: #e01f1f;
+    color: white;
+}
+
+.pagination .step-links .current {
+    color: #ffffff;
+    padding: 5px 10px;
+    margin-right: 4px;
+    border-radius: 3px;
+    background: #e01f1f;
+}
