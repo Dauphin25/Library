@@ -23,7 +23,19 @@ The project consists of the following components:
 
 In our `Book` model, we have a `category` field which is a `ManyToManyField`. This means a book can belong to multiple categories and a category can have multiple books. Here's how it's defined:
 
+## Features
 
+### Home Page
+
+The home page is the landing page of the application. It displays a list of featured books and authors.
+
+### Book Page
+
+The book page displays a list of all the books available in the shop. Each book is displayed as a list item with the book information on the left and the cover on the right. The book page also includes a pagination feature for easy navigation through the list of books.
+
+### Author Page
+
+The author page displays a list of all the authors whose books are available in the shop. Each author is displayed in a grid layout with a portrait and some details about the author.
 
 
 1. **Models:** Defined in `market/models.py`, the `Book` model includes fields such as title, author, category, year, price, cover, created_at, and updated_at.
