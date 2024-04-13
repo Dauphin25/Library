@@ -20,7 +20,13 @@ def all_authors(request):
 
 
 def home_page(request):
-    return render(request, 'main.html')
+    # Get the three most recent books
+    famous_books = Book.objects.order_by('-created_at')[:3]
+
+    # Get the three most recent authors
+    famous_authors = Author.objects.order_by('-created_at')[:3]
+
+    return render(request, 'home.html', {'books': famous_books, 'authors': famous_authors})
 
 
 class BookDetailView(DetailView):
