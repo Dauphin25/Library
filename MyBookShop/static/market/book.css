@@ -1,0 +1,61 @@
+/* Add your styles here */
+
+/* Container for the list of books */
+.list-container {
+    list-style-type: none; /* Remove default list style */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Individual book item */
+.list-item {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out elements evenly */
+    border: 2px solid #f00; /* Red border with increased thickness */
+    background-color: #fff; /* White background */
+    margin-top: -1px; /* Prevent double borders */
+    padding: 20px; /* Increased padding inside each book item */
+    text-decoration: none; /* Remove default link underline */
+    font-size: 22px; /* Font size for book details */
+    color: #333; /* Dark gray text color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect for each book item */
+}
+
+/* Hover effect */
+.list-item:hover {
+    background-color: #ff9a9a; /* Red background on hover */
+    color: #fff; /* White text color on hover */
+}
+
+/* Cover image */
+.list-item img {
+    width: 200px; /* Set width of the image */
+    height: 300px; /* Set height of the image */
+    object-fit: cover; /* Maintain aspect ratio and cover entire space */
+    border-radius: 10px; /* Rounded corners for the image */
+    margin-right: 20px; /* Spacing between image and text */
+}
+
+/* Title of the book */
+.list-item .book-title {
+    font-weight: bold; /* Make the title bold */
+    margin-bottom: 10px; /* Spacing below the title */
+}
+
+/* Author and price */
+.list-item .book-details {
+    flex-grow: 1; /* Allow details to grow and fill remaining space */
+}
+
+/* Author */
+.list-item .book-details .author {
+    font-style: italic; /* Make the author name italic */
+    color: #666; /* Dark gray color for author */
+}
+
+/* Price */
+.list-item .book-details .price {
+    font-weight: bold; /* Make the price bold */
+    color: #f00; /* Red color for price */
+}

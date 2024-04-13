@@ -1,47 +1,48 @@
-{% extends 'main.html' %}
-{% load static %}
+{% extends 'main.html' %} <!-- Extend the main layout -->
+{% load static %} <!-- Load static files -->
 
-{% block content %}
+{% block content %} <!-- Define content block -->
     <!-- Your CSS styles here -->
-<head>
-    <link href="{% static 'market/grid.css' %}" rel="stylesheet">
-    <link href="{% static 'market/paginator.css' %}" rel="stylesheet">
-</head>
-    <section id="featured-books" class="grid-container">
-        <!-- Display the famous books -->
+    <link href="{% static 'market/book.css' %}" rel="stylesheet"> <!-- Link to the CSS file -->
+     <link href="{% static 'market/paginator.css' %}" rel="stylesheet"> <!-- Link to the CSS file -->
+
+    <ul id="featured-books" class="list-container">
+
         {% for book in books %}
-        <a href="{% url 'book_detail' book_id=book.id %}">
-            <div class="grid-item" style="background-image: url('{{ book.cover.url }}')">
-                <div class="details">
-                    <h3>{{ book.title }}</h3>
-                    <p>Author: {{ book.author.name }}</p>
-                    <p>Price: {{ book.price }}</p>
-                    <!-- Add more book details here if needed -->
-                </div>
+        <a href="{% url 'book_detail' book_id=book.id %}" class="list-item">
+            <div class="details">
+                <h3>{{ book.title }}</h3>
+                <p>Author: {{ book.author.name }}</p>
+                <p>Price: {{ book.price }}</p>
+                <p>Year: {{ book.year }}</p>
+                <p><strong>Categories:</strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+                <!-- Add more book details here if needed -->
             </div>
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}">
         </a>
         {% endfor %}
-    </section>
+    </ul>
 
-
-    <div class="pagination">
-        <span class="step-links">
+    <!-- Pagination -->
+    <div class="pagination"> <!-- Pagination section -->
+        <span class="step-links"> <!-- Links for pagination -->
+            <!-- Display "First" and "Previous" links if available -->
             {% if books.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ books.previous_page_number }}">previous</a>
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ books.previous_page_number }}">Previous</a>
             {% endif %}
 
+            <!-- Display current page number and total number of pages -->
             <span class="current">
                 Page {{ books.number }} of {{ books.paginator.num_pages }}.
             </span>
 
+            <!-- Display "Next" and "Last" links if available -->
             {% if books.has_next %}
-                <a href="?page={{ books.next_page_number }}">next</a>
-                <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ books.next_page_number }}">Next</a>
+                <a href="?page={{ books.paginator.num_pages }}">Last &raquo;</a>
             {% endif %}
         </span>
     </div>
 {% endblock %}
-
-
-
