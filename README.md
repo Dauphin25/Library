@@ -32,6 +32,13 @@ The home page is the landing page of the application. It displays a list of feat
 ### Book Page
 
 The book page displays a list of all the books available in the shop. Each book is displayed as a list item with the book information on the left and the cover on the right. The book page also includes a pagination feature for easy navigation through the list of books.
+Each book has a cover type attribute. This attribute can be used to filter the books on the book page.
+
+### Book Filters
+
+The book page includes a filter form. Users can filter books by cover type, author's name, maximum price. The filter is applied across all pages of the book list.
+
+
 
 ### Author Page
 
