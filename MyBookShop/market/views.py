@@ -6,11 +6,31 @@ from django.views.generic import DetailView
 
 # Create your views here.
 def all_books(request):
+    # Get all books from the database
     books_list = Book.objects.all()
-    paginator = Paginator(books_list, 3)  # Show 3 books per page.
 
-    page_number = request.GET.get('page')
-    books = paginator.get_page(page_number)
+    # Get filter parameters from GET request
+    cover_type = request.GET.get('cover_type')
+    author_name = request.GET.get('author_name')
+    max_price = request.GET.get('max_price')
+
+    # Apply filtering based on parameters
+    if cover_type:
+        books_list = books_list.filter(cover_type=cover_type)
+    if author_name:
+        books_list = books_list.filter(author__name__icontains=author_name)
+    if max_price:
+        books_list = books_list.filter(price__lte=max_price)
+
+    # Order books by price in descending order
+    books_list = books_list.order_by('-price')
+
+    # Paginate the filtered books
+    paginator = Paginator(books_list, 3)  # Show 3 books per page.
+    page_number = request.GET.get('page')  # Get the current page number from the request
+    books = paginator.get_page(page_number)  # Get the books for the requested page
+
+    # Pass the paginated queryset to the template context
     return render(request, 'book.html', {'books': books})
 
 
