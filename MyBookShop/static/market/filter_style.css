@@ -1,0 +1,60 @@
+    /* Filter container */
+.filter-container {
+    background-color: #f9f9f9; /* Light gray background */
+    border: 2px solid #f00; /* Red border with increased thickness */
+    padding: 20px; /* Padding around the filter container */
+    margin-top: 20px; /* Spacing between filter container and header */
+    margin-bottom: 20px; /* Spacing between filter container and book list */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+    /* Filter labels */
+.filter-container label {
+    margin-right: 10px; /* Spacing between labels and input fields */
+    color: #555; /* Dark gray color for labels */
+    font-size: 14px; /* Font size for labels */
+    font-weight: bold; /* Bold font weight for labels */
+    text-transform: uppercase; /* Convert text to uppercase */
+}
+
+/* Filter form */
+.filter-container form {
+    display: flex; /* Use flexbox for form layout */
+    flex-wrap: wrap; /* Allow form items to wrap */
+    justify-content: space-between; /* Space out form items evenly */
+}
+
+/* Filter input fields */
+.filter-container label {
+    margin-right: 10px; /* Spacing between labels and input fields */
+    color: #555; /* Dark gray color for labels */
+}
+
+.filter-container input,
+.filter-container select {
+    padding: 10px; /* Padding for input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+    border: 1px solid #ddd; /* Light gray border */
+    background-color: #fff; /* White background color */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.filter-container input:focus,
+.filter-container select:focus {
+    outline: none; /* Remove outline on focus */
+    border-color: #f00; /* Blue border color on focus */
+}
+
+.filter-container button {
+    padding: 10px 20px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners for button */
+    background-color: #f00; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.filter-container button:hover {
+    background-color: #f00; /* Darker blue on hover */
+}
