@@ -1,8 +1,14 @@
 <!-- book_detail.html -->
 
+{% extends 'main.html' %}
+
+
+{% block content %}
+
 <h1>{{ book.title }}</h1>
 <p><strong>Author:</strong> {{ book.author }}</p>
 <p><strong>Categories:</strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+<p><strong>Book Cover</strong> {{ book.cover_type }}</p>
 <p><strong>Year:</strong> {{ book.year }}</p>
 <p><strong>Price:</strong> {{ book.price }}</p>
 {% if book.cover %}
@@ -10,3 +16,5 @@
 {% else %}
 <p>No Cover Available</p>
 {% endif %}
+
+{% endblock %}
