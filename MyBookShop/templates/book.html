@@ -1,8 +1,11 @@
 {% extends 'main.html' %} <!-- Extend the main layout -->
 {% load static %} <!-- Load static files -->
 
+
 {% block content %} <!-- Define content block -->
-    <!-- Your CSS styles here -->
+
+    {% include 'filter_book.html' %} <!-- Include the filter_book.html file -->
+
     <link href="{% static 'market/book.css' %}" rel="stylesheet"> <!-- Link to the CSS file -->
      <link href="{% static 'market/paginator.css' %}" rel="stylesheet"> <!-- Link to the CSS file -->
 
@@ -12,11 +15,11 @@
         <a href="{% url 'book_detail' book_id=book.id %}" class="list-item">
             <div class="details">
                 <h3>{{ book.title }}</h3>
-                <p>Author: {{ book.author.name }}</p>
-                <p>Price: {{ book.price }}</p>
-                <p>Year: {{ book.year }}</p>
-                <p><strong>Categories:</strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-
+                <p><strong> Author: </strong>{{ book.author.name }}</p>
+                <p><strong> Price: </strong>{{ book.price }}</p>
+                <p><strong> Year: </strong>{{ book.year }}</p>
+                <p><strong> Book Cover: </strong>{{ book.cover_type }}</p>
+                <p><strong> Categories: </strong> {% for category in book.category.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
                 <!-- Add more book details here if needed -->
             </div>
             <img src="{{ book.cover.url }}" alt="{{ book.title }}">
@@ -24,25 +27,25 @@
         {% endfor %}
     </ul>
 
-    <!-- Pagination -->
-    <div class="pagination"> <!-- Pagination section -->
-        <span class="step-links"> <!-- Links for pagination -->
-            <!-- Display "First" and "Previous" links if available -->
-            {% if books.has_previous %}
-                <a href="?page=1">&laquo; First</a>
-                <a href="?page={{ books.previous_page_number }}">Previous</a>
-            {% endif %}
+<!-- Pagination -->
+<div class="pagination"> <!-- Pagination section -->
+    <span class="step-links"> <!-- Links for pagination -->
+        <!-- Display "First" and "Previous" links if available -->
+        {% if books.has_previous %}
+            <a href="?page=1&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">&laquo; First</a>
+            <a href="?page={{ books.previous_page_number }}&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Previous</a>
+        {% endif %}
 
-            <!-- Display current page number and total number of pages -->
-            <span class="current">
-                Page {{ books.number }} of {{ books.paginator.num_pages }}.
-            </span>
-
-            <!-- Display "Next" and "Last" links if available -->
-            {% if books.has_next %}
-                <a href="?page={{ books.next_page_number }}">Next</a>
-                <a href="?page={{ books.paginator.num_pages }}">Last &raquo;</a>
-            {% endif %}
+        <!-- Display current page number and total number of pages -->
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
         </span>
-    </div>
+
+        <!-- Display "Next" and "Last" links if available -->
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Next</a>
+            <a href="?page={{ books.paginator.num_pages }}&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}
