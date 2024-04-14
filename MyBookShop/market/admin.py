@@ -5,12 +5,12 @@ from .models import Book, Author, Category
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_categories', 'year', 'price', 'created_at', 'updated_at')
+    list_display = ('title', 'author', 'display_categories', 'cover_type', 'year', 'price', 'created_at', 'updated_at')
     list_filter = ('category', 'year')
     search_fields = ('title', 'category__name')
     date_hierarchy = 'created_at'
     ordering = ['created_at']
-    fields = ['title', 'author', 'category', 'year', 'price', 'cover']
+    fields = ['title', 'author', 'category', 'cover_type', 'year', 'price', 'cover']
     readonly_fields = ['created_at', 'updated_at']
     list_editable = ['price']
     list_per_page = 10
