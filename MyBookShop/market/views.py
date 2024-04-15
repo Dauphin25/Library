@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from .models import Book, Author, Category
+from market.models import Book, Author, Category
 from django.views.generic import DetailView
 
 
