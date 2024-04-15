@@ -1,10 +1,15 @@
 /* Add your styles here */
-
+.main-container {
+    display: flex;
+    gap: 20px; /* Adjust this value to increase or decrease the space between the filter and the book listing */
+}
 /* Container for the list of books */
 .list-container {
+    flex-grow: 1;
     list-style-type: none; /* Remove default list style */
-    margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
+    margin-top: 20px; /* Spacing between filter container and header */
+    margin-bottom: 20px; /* Spacing between filter container and book list */
 }
 
 /* Individual book item */

@@ -6,19 +6,17 @@
 
 <div class="filter-container">
     <form method="get" action="{% url 'all_books' %}">
-        <label for="cover_type">Cover Type:</label>
-        <select name="cover_type" id="cover_type">
-            <option value="">All</option>
-                    <option value="hard">Hardcover</option>
-                    <option value="soft">Softcover</option>
-                    <option value="paperback">Paperback</option>
-                    <option value="spiral">Spiral-bound</option>
-                    <option value="board">Board book</option>
-                    <option value="cloth">Clothbound</option>
-                    <option value="leather">Leather-bound</option>
-                    <option value="other">Other</option>
-            <!-- Add more options if needed -->
-        </select>
+
+        <label for="category">Category:</label>
+        <div class="button-row">
+        {% for category in categories %}
+            {% if forloop.counter|divisibleby:5 and not forloop.first %}
+                </div><div class="button-row">
+            {% endif %}
+            <button type="submit" name="category" value="{{ category.id }}">{{ category.name }}</button>
+        {% endfor %}
+        </div>
+
 
         <label for="author_name">Author Name:</label>
         <input type="text" name="author_name" id="author_name">
@@ -28,12 +26,22 @@
 
         <button type="submit">Apply Filters</button>
     </form>
-</div>
 
+</div>
+{% endblock %}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     // Select the cover type dropdown
     var coverTypeInput = document.getElementById("cover_type");
+    var categoryInput = document.getElementById("category");
+
+    categoryInput.addEventListener("keypress", function(event) {
+        // Check if the key pressed is Enter
+        if (event.key === "Enter") {
+            // Submit the form
+            this.form.submit();
+        }
+    });
 
     // Add event listener to cover type dropdown
     coverTypeInput.addEventListener("keypress", function(event) {
@@ -47,4 +55,3 @@
 </script>
 
 
-{% endblock %}

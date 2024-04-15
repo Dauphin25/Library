@@ -2,6 +2,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from market.choices import COVER_CHOICES
+
 
 class Author(models.Model):
     name = models.CharField(max_length=100, verbose_name=_("author name"))
@@ -38,17 +40,7 @@ class Category(models.Model):
 
 
 class Book(models.Model):
-    # Define choices for cover types
-    COVER_CHOICES = [
-        ('hard', 'Hardcover'),         # Hardcover option
-        ('soft', 'Softcover'),         # Softcover option
-        ('paperback', 'Paperback'),    # Paperback option
-        ('spiral', 'Spiral-bound'),    # Spiral-bound option
-        ('board', 'Board book'),       # Board book option
-        ('cloth', 'Clothbound'),       # Clothbound option
-        ('leather', 'Leather-bound'),  # Leather-bound option
-        ('other', 'Other'),            # Other option
-    ]
+
 
     title = models.CharField(max_length=100, verbose_name=_("book title"))
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=_("author"), null=True, blank=True)

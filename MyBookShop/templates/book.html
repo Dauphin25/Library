@@ -4,10 +4,11 @@
 
 {% block content %} <!-- Define content block -->
 
-    {% include 'filter_book.html' %} <!-- Include the filter_book.html file -->
-
     <link href="{% static 'market/book.css' %}" rel="stylesheet"> <!-- Link to the CSS file -->
      <link href="{% static 'market/paginator.css' %}" rel="stylesheet"> <!-- Link to the CSS file -->
+<div class = main-container>
+
+     {% include 'filter_book.html' %} <!-- Include the filter_book.html file -->
 
     <ul id="featured-books" class="list-container">
 
@@ -26,14 +27,14 @@
         </a>
         {% endfor %}
     </ul>
-
+</div>
 <!-- Pagination -->
 <div class="pagination"> <!-- Pagination section -->
     <span class="step-links"> <!-- Links for pagination -->
         <!-- Display "First" and "Previous" links if available -->
         {% if books.has_previous %}
-            <a href="?page=1&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">&laquo; First</a>
-            <a href="?page={{ books.previous_page_number }}&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Previous</a>
+             <a href="?page=1&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">&laquo; First</a>
+            <a href="?page={{ books.previous_page_number }}&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Previous</a>
         {% endif %}
 
         <!-- Display current page number and total number of pages -->
@@ -43,8 +44,8 @@
 
         <!-- Display "Next" and "Last" links if available -->
         {% if books.has_next %}
-            <a href="?page={{ books.next_page_number }}&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Next</a>
-            <a href="?page={{ books.paginator.num_pages }}&cover_type={{ request.GET.cover_type }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Last &raquo;</a>
+  <a href="?page={{ books.next_page_number }}&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Next</a>
+            <a href="?page={{ books.paginator.num_pages }}&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Last &raquo;</a>
         {% endif %}
     </span>
 </div>

@@ -1,5 +1,6 @@
     /* Filter container */
 .filter-container {
+    flex-basis: 300px;
     background-color: #f9f9f9; /* Light gray background */
     border: 2px solid #f00; /* Red border with increased thickness */
     padding: 20px; /* Padding around the filter container */
@@ -17,26 +18,15 @@
     text-transform: uppercase; /* Convert text to uppercase */
 }
 
-/* Filter form */
 .filter-container form {
-    display: flex; /* Use flexbox for form layout */
-    flex-wrap: wrap; /* Allow form items to wrap */
-    justify-content: space-between; /* Space out form items evenly */
+    display: block;
 }
 
-/* Filter input fields */
-.filter-container label {
-    margin-right: 10px; /* Spacing between labels and input fields */
-    color: #555; /* Dark gray color for labels */
-}
-
-.filter-container input,
-.filter-container select {
-    padding: 10px; /* Padding for input fields */
-    border-radius: 5px; /* Rounded corners for input fields */
-    border: 1px solid #ddd; /* Light gray border */
-    background-color: #fff; /* White background color */
-    transition: border-color 0.3s ease; /* Smooth transition for border color */
+.filter-container form label,
+.filter-container form select,
+.filter-container form input {
+    display: block;
+    margin-bottom: 10px;
 }
 
 .filter-container input:focus,
@@ -46,6 +36,7 @@
 }
 
 .filter-container button {
+    margin-bottom: 10px; /* Spacing above the button */
     padding: 10px 20px; /* Padding for button */
     border-radius: 5px; /* Rounded corners for button */
     background-color: #f00; /* Blue background color */
