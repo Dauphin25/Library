@@ -5,8 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from market.models.author import Author
 from market.models.category import Category
-
-from market.enum.choices import COVER_CHOICES
+from market.choices.covers import COVER_CHOICES
 
 
 class Book(models.Model):
