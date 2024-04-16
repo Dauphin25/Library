@@ -18,18 +18,31 @@
         </div>
 
 
-        <label for="author_name">Author Name:</label>
-        <input type="text" name="author_name" id="author_name">
+        <label for="author">Author:</label>
+        <div class="button-row">
+        {% for author in authors %}
+            {% if forloop.counter|divisibleby:5 and not forloop.first %}
+                </div><div class="button-row">
+            {% endif %}
+            <button type="submit" name="author" value="{{ author.id }}">{{ author.name }}</button>
+        {% endfor %}
+        </div>
 
-        <label for="max_price">Max Price:</label>
-        <input type="number" name="max_price" id="max_price">
+         <label>Price Sorting:</label>
+            <button type="submit" name="price_order" value="asc">Ascending</button>
+            <button type="submit" name="price_order" value="desc">Descending</button>
 
-        <button type="submit">Apply Filters</button>
+        <br>
+        <label for="resetBtn">Reset</label>
+        <button type="submit" name="reset" id="resetBtn">Reset</button>
+
+
     </form>
 
 </div>
 {% endblock %}
 <script>
+
     document.addEventListener("DOMContentLoaded", function() {
     // Select the cover type dropdown
     var coverTypeInput = document.getElementById("cover_type");

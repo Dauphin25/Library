@@ -8,26 +8,32 @@ from django.views.generic import DetailView
 def all_books(request):
     # Get all books from the database
     books_list = Book.objects.all()
+    authors = Author.objects.all()
     categories = Category.objects.all()
 
     # Get filter parameters from GET request
-    cover_type = request.GET.get('cover_type')
     category_id = request.GET.get('category')
-    author_name = request.GET.get('author_name')
-    max_price = request.GET.get('max_price')
+    author_id = request.GET.get('author')
+    price_order = request.GET.get('price_order')
+
+    print("Author name:", author_id)  # Debugging statement
 
     # Apply filtering based on parameters
     if category_id:
         books_list = books_list.filter(category__id=category_id)
-    if cover_type:
-        books_list = books_list.filter(cover_type=cover_type)
-    if author_name:
-        books_list = books_list.filter(author__name__icontains=author_name)
-    if max_price:
-        books_list = books_list.filter(price__lte=max_price)
+        authors = authors.filter(book__category__id=category_id).distinct()
+        categories = categories.filter(book__id__in=books_list.values_list('id')).distinct()
 
-    # Order books by price in descending order
-    books_list = books_list.order_by('-price')
+    if author_id:
+        books_list = books_list.filter(author__id=author_id)
+        categories = categories.filter(book__author__id=author_id).distinct()
+        authors = authors.filter(book__id__in=books_list.values_list('id')).distinct()
+        print("Filtered books count:", books_list.count())  # Debugging statement
+
+    if price_order == 'asc':
+        books_list = books_list.order_by('price')
+    elif price_order == 'desc':
+        books_list = books_list.order_by('-price')
 
     # Paginate the filtered books
     paginator = Paginator(books_list, 3)  # Show 3 books per page.
@@ -35,7 +41,7 @@ def all_books(request):
     books = paginator.get_page(page_number)  # Get the books for the requested page
 
     # Pass the paginated queryset to the template context
-    return render(request, 'book.html', {'books': books, 'categories': categories})
+    return render(request, 'book.html', {'books': books, 'categories': categories, 'authors': authors})
 
 
 def all_authors(request):

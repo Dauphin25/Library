@@ -47,5 +47,11 @@
 }
 
 .filter-container button:hover {
-    background-color: #f00; /* Darker blue on hover */
+    background-color: #ff9a9a; /* Darker blue on hover */
 }
+
+.filter-container button:active{
+    background-color: #008CBA; /* Change to the color you want when button is active */
+}
+
+

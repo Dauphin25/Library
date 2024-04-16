@@ -33,8 +33,8 @@
     <span class="step-links"> <!-- Links for pagination -->
         <!-- Display "First" and "Previous" links if available -->
         {% if books.has_previous %}
-             <a href="?page=1&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">&laquo; First</a>
-            <a href="?page={{ books.previous_page_number }}&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Previous</a>
+        <a href="?{% if category_id %}category={{ category_id }}{% endif %}{% if author_id %}&author={{ author_id }}{% endif %}{% if price_order %}&price_order={{ price_order }}{% endif %}&page=1">&laquo; First</a>
+        <a href="?{% if category_id %}category={{ category_id }}{% endif %}{% if author_id %}&author={{ author_id }}{% endif %}{% if price_order %}&price_order={{ price_order }}{% endif %}&page={{ books.previous_page_number }}">Previous</a>
         {% endif %}
 
         <!-- Display current page number and total number of pages -->
@@ -44,8 +44,8 @@
 
         <!-- Display "Next" and "Last" links if available -->
         {% if books.has_next %}
-  <a href="?page={{ books.next_page_number }}&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Next</a>
-            <a href="?page={{ books.paginator.num_pages }}&cover_type={{ request.GET.cover_type }}&category={{ request.GET.category }}&author_name={{ request.GET.author_name }}&max_price={{ request.GET.max_price }}">Last &raquo;</a>
+        <a href="?{% if category_id %}category={{ category_id }}{% endif %}{% if author_id %}&author={{ author_id }}{% endif %}{% if price_order %}&price_order={{ price_order }}{% endif %}&page={{ books.next_page_number }}">Next</a>
+        <a href="?{% if category_id %}category={{ category_id }}{% endif %}{% if author_id %}&author={{ author_id }}{% endif %}{% if price_order %}&price_order={{ price_order }}{% endif %}&page={{ books.paginator.num_pages }}">Last &raquo;</a>
         {% endif %}
     </span>
 </div>
