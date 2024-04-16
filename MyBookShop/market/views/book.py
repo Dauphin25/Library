@@ -1,12 +1,15 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from market.models import Book, Author, Category
 from django.views.generic import DetailView
 
+from market.models.book import Book
 
-# Create your views here.
+from market.models.author import Author
+
+from market.models.category import Category
+
+
 def all_books(request):
-    # Get all books from the database
     books_list = Book.objects.all()
     authors = Author.objects.all()
     categories = Category.objects.all()
@@ -41,27 +44,12 @@ def all_books(request):
     books = paginator.get_page(page_number)  # Get the books for the requested page
 
     # Pass the paginated queryset to the template context
-    return render(request, 'book.html', {'books': books, 'categories': categories, 'authors': authors})
-
-
-def all_authors(request):
-    authors = Author.objects.all()
-    return render(request, 'author.html', {'authors': authors})
-
-
-def home_page(request):
-    # Get the three most recent books
-    famous_books = Book.objects.order_by('?')[:3]
-
-    # Get the three most recent authors
-    famous_authors = Author.objects.order_by('?')[:3]
-
-    return render(request, 'home.html', {'books': famous_books, 'authors': famous_authors})
+    return render(request, 'book/book.html', {'books': books, 'categories': categories, 'authors': authors})
 
 
 class BookDetailView(DetailView):
     model = Book
-    template_name = 'book_detail.html'
+    template_name = 'book/book_detail.html'
     context_object_name = 'book'
     pk_url_kwarg = 'book_id'
     query_pk_and_slug = True
@@ -72,18 +60,3 @@ class BookDetailView(DetailView):
     extra_context['header'] = 'Book Detail'
     extra_context['description'] = 'This is the detail of the book'
     extra_context['keywords'] = 'book, detail, book detail'
-
-
-class AuthorDetailView(DetailView):
-    model = Author
-    template_name = 'author_detail.html'
-    context_object_name = 'author'
-    pk_url_kwarg = 'author_id'
-    query_pk_and_slug = True
-    slug_field = 'name'
-    slug_url_kwarg = 'author_name'
-    extra_context = {}
-    extra_context['title'] = 'Author Detail'
-    extra_context['header'] = 'Author Detail'
-    extra_context['description'] = 'This is the detail of the author'
-    extra_context['keywords'] = 'author, detail, author detail'
