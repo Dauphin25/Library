@@ -6,6 +6,10 @@ from market.models.author import Author
 
 from market.models.category import Category
 
+from market.models.book_publisher import BookPublisher
+
+from market.models.publisher import Publisher
+
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
@@ -73,6 +77,55 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ['created_at']
     fields = ['name', 'description']
     readonly_fields = ['created_at', 'updated_at']
+    list_per_page = 10
+    list_max_show_all = 100
+    list_display_links = ['name']
+    list_select_related = False
+    save_as = False
+    save_on_top = False
+    preserve_filters = True
+    inlines = []
+    exclude = []
+    actions_on_top = True
+    actions_on_bottom = False
+    actions_selection_counter = True
+    actions = []
+    show_full_result_count = True
+    show_all = False
+
+
+@admin.register(BookPublisher)
+class BookPublisherAdmin(admin.ModelAdmin):
+    list_display = ('book', 'publisher', 'publication_date', 'edition', 'published_copies')
+    list_filter = ('publication_date', 'edition')
+    search_fields = ('book__title', 'publisher__name')
+    date_hierarchy = 'publication_date'
+    ordering = ['publication_date']
+    fields = ['book', 'publisher', 'publication_date', 'edition', 'published_copies']
+    list_per_page = 10
+    list_max_show_all = 100
+    list_display_links = ['book']
+    list_select_related = False
+    save_as = False
+    save_on_top = False
+    preserve_filters = True
+    inlines = []
+    exclude = []
+    actions_on_top = True
+    actions_on_bottom = False
+    actions_selection_counter = True
+    actions = []
+    show_full_result_count = True
+    show_all = False
+
+
+@admin.register(Publisher)
+class PublisherAdmin(admin.ModelAdmin):
+    list_display = ('name', 'founded_year', 'country', 'website', 'email')
+    list_filter = ('founded_year', 'country')
+    search_fields = ('name', 'country')
+    ordering = ['name']
+    fields = ['name', 'founded_year', 'country', 'website', 'email']
     list_per_page = 10
     list_max_show_all = 100
     list_display_links = ['name']
